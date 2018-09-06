@@ -50,3 +50,27 @@ func judge(str string ) bool{
 	}
 	return true
 }
+
+
+
+//另外一种方法
+/*
+将原数做反转，然后新老比较
+*/
+func isPalindrome(x int) bool {
+  if x < 0 {
+		return false
+	}
+
+	if x < 10 {
+		return true
+	}
+	 o := x
+	 y := 0
+	for x != 0 {
+		tmp := x % 10
+		y = y*10 + tmp
+		x = x/10
+	}
+	return o == y
+}
