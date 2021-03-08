@@ -1,3 +1,5 @@
+package algcode
+
 /*
 给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
 
@@ -45,34 +47,33 @@ p = "mis*is*p*."
 输出: false
 */
 
-
 func isMatch(s string, p string) bool {
-    
-    if len(s) != 0 && len(p) == 0{
+
+	if len(s) != 0 && len(p) == 0 {
 		return false
 	}
 	//如果s p 都为空 返回true
-	if len(s) == 0 && len(p) == 0{
+	if len(s) == 0 && len(p) == 0 {
 		return true
 	}
 	//如果p只有一个的情况 要么是. 要么是字母
-	if  len(p) == 1 {
-	return len(s) == 1 &&  (s[0] == p[0] || p[0] == '.')
+	if len(p) == 1 {
+		return len(s) == 1 && (s[0] == p[0] || p[0] == '.')
 	}
 
 	//若p的第二个字符不为*,若此时s为空则返回false,否则判断首字符是否匹配，且从各自的第二个字符开始调用
 	//递归函数匹配
-	if p[1] != '*'{
+	if p[1] != '*' {
 		if len(s) == 0 {
 			return false
 		}
-		return (s[0]== p[0] || p[0]== '.') && isMatch(s[1:], p[1:])
+		return (s[0] == p[0] || p[0] == '.') && isMatch(s[1:], p[1:])
 	}
 
 	//若p的第二个字符为*，若s不为空且字符匹配， 调用递归函数匹配s和去掉前两个字符的p,若匹配返回true，否则去掉s的
 	//首字母
-	for len(s) != 0 && (s[0] == p[0] || p[0] == '.'){
-		if isMatch(s, p[2:]){
+	for len(s) != 0 && (s[0] == p[0] || p[0] == '.') {
+		if isMatch(s, p[2:]) {
 			return true
 		}
 		s = s[1:]
@@ -80,5 +81,5 @@ func isMatch(s string, p string) bool {
 
 	//返回调用递归函数匹配s和去掉前两个字符的p的结果
 
-	return isMatch(s,p[2:])
+	return isMatch(s, p[2:])
 }

@@ -1,3 +1,5 @@
+package algcode
+
 /*
 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
 
@@ -30,22 +32,21 @@
 */
 
 func isValid(s string) bool {
-    
-	
+
 	stack := ""
 	for _, v := range s {
-		if v == '[' || v == '{' || v == '('{
+		if v == '[' || v == '{' || v == '(' {
 			stack = stack + string(v)
-		}else{
-			if len(stack) == 0{
+		} else {
+			if len(stack) == 0 {
 				return false
 			}
 			top := stack[len(stack)-1]
 			if v == ']' && top != '[' {
 				return false
-			} else if v == '}' && top != '{'{
+			} else if v == '}' && top != '{' {
 				return false
-			} else if v == ')' && top != '('{
+			} else if v == ')' && top != '(' {
 				return false
 			}
 			stack = stack[:len(stack)-1]

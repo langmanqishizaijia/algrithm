@@ -1,3 +1,5 @@
+package algcode
+
 /*
 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
 
@@ -25,9 +27,9 @@
  * }
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-   count := 0
+	count := 0
 	p := head
-	for p != nil{
+	for p != nil {
 		count++
 		p = p.Next
 	}
@@ -38,13 +40,13 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 		head = head.Next
 		return head
 	}
-	cnt := count - n- 1
+	cnt := count - n - 1
 	i := 0
-	p  = head
-	for i< cnt {
+	p = head
+	for i < cnt {
 		p = p.Next
 		i++
 	}
 	p.Next = p.Next.Next
-	return head 
+	return head
 }

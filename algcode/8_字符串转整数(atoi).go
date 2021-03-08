@@ -1,3 +1,7 @@
+package algcode
+
+import "strings"
+
 /*
 
 实现 atoi，将字符串转为整数。
@@ -39,12 +43,11 @@
 
 输入: "-91283472332"
 输出: -2147483648
-解释: 数字 "-91283472332" 超过 32 位有符号整数范围。 
+解释: 数字 "-91283472332" 超过 32 位有符号整数范围。
      因此返回 INT_MIN (−231) 。
 */
 func myAtoi(str string) int {
-    
-	
+
 	str = strings.TrimSpace(str)
 	if len(str) == 0 {
 		return 0
@@ -52,35 +55,35 @@ func myAtoi(str string) int {
 
 	newstr := ""
 	flag := 1
-	for i:= 0; i< len(str);i++{
-		if i== 0 && (str[0] == '-' || str[0] == '+'){
-			if str[0] == '-'{
+	for i := 0; i < len(str); i++ {
+		if i == 0 && (str[0] == '-' || str[0] == '+') {
+			if str[0] == '-' {
 				flag = -1
 			}
 			continue
-		}else if i >=  0 && str[i] >= '0' && str[i] <= '9'{
+		} else if i >= 0 && str[i] >= '0' && str[i] <= '9' {
 			newstr += string(str[i])
 			continue
-		}else{
+		} else {
 			break
 		}
 	}
 	str = newstr
 	ret := 0
-	for _,k := range str{
-		ret = ret * 10 + int(k-'0')
-		if flag == 1 && ret >=  1<< 31{
-			return 1 << 31 -1
-		} else if flag == -1 && ret * flag < -1<< 31{
+	for _, k := range str {
+		ret = ret*10 + int(k-'0')
+		if flag == 1 && ret >= 1<<31 {
+			return 1<<31 - 1
+		} else if flag == -1 && ret*flag < -1<<31 {
 			return -1 << 31
 		}
 	}
-	if ret * flag <  -1<< 31{
-		return -1<<31
+	if ret*flag < -1<<31 {
+		return -1 << 31
 	}
 
-	if ret * flag >=  1<< 31{
-		return 1 << 31 -1
+	if ret*flag >= 1<<31 {
+		return 1<<31 - 1
 	}
 
 	return int(flag * ret)

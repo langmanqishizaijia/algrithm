@@ -1,3 +1,5 @@
+package algcode
+
 /*
 Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
 
@@ -14,17 +16,17 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 */
 
 func missingNumber(nums []int) int {
-    num := len (nums)
-    m := make(map[int]int, 0)
-    for _, v := range nums {
-        m[v] = v
-    }
-    
-    for i:= 0; i< num ;i++ {
-        if _, ok := m[i];!ok{
-            return i
-            break
-        }
-    }
-    return num
+	num := len(nums)
+	m := make(map[int]int, 0)
+	for _, v := range nums {
+		m[v] = v
+	}
+
+	for i := 0; i < num; i++ {
+		if _, ok := m[i]; !ok {
+			return i
+			break
+		}
+	}
+	return num
 }

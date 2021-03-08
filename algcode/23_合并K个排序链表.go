@@ -1,3 +1,5 @@
+package algcode
+
 /*
 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
 
@@ -22,21 +24,21 @@
  * }
  */
 func mergeKLists(lists []*ListNode) *ListNode {
-	if len(lists) == 0{
+	if len(lists) == 0 {
 		return nil
 	}
 
-	for len(lists) > 1{
+	for len(lists) > 1 {
 		lists = MergeLong2Short(lists)
 	}
 
-    return lists[0]
+	return lists[0]
 }
 
-func MergeLong2Short(lists []*ListNode) (newList []*ListNode){
+func MergeLong2Short(lists []*ListNode) (newList []*ListNode) {
 
-	l:= 0
-	r:= len(lists)-1
+	l := 0
+	r := len(lists) - 1
 
 	for l < r {
 		lists[l] = merge(lists[l], lists[r])
@@ -49,37 +51,34 @@ func MergeLong2Short(lists []*ListNode) (newList []*ListNode){
 	return lists[:l]
 }
 
-func merge(a, b *ListNode) *ListNode{
-	if a == nil{
+func merge(a, b *ListNode) *ListNode {
+	if a == nil {
 		return b
 	}
-	if b == nil{
+	if b == nil {
 		return a
 	}
 
 	Head := &ListNode{}
 	p := Head
 
-	for a != nil && b != nil{
-		if a.Val < b.Val{
+	for a != nil && b != nil {
+		if a.Val < b.Val {
 			p.Next = b
 			p = b
 			b = b.Next
-		}else{
+		} else {
 			p.Next = a
 			p = a
 			a = a.Next
 		}
 
-		if a == nil{
+		if a == nil {
 			p.Next = b
-		}else if b == nil{
+		} else if b == nil {
 			p.Next = a
 		}
-
 
 	}
 	return Head.Next
 }
-
-

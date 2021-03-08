@@ -1,3 +1,5 @@
+package algcode
+
 /*
 给定一个 32 位有符号整数，将整数中的数字进行反转。
 
@@ -19,20 +21,20 @@
 */
 
 func reverse(x int) int {
-    flag := true
+	flag := true
 	if x < 0 {
 		flag = false
 		x = -x
 	}
 	ret := 0
 	for x != 0 {
-		ret = ret * 10 + x % 10
-		x = x/10
+		ret = ret*10 + x%10
+		x = x / 10
 	}
 
-    if ret > 1<< 31 {
-        return 0
-    }
+	if ret > 1<<31 {
+		return 0
+	}
 	if !flag {
 		return -ret
 	}

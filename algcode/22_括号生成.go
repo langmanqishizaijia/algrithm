@@ -1,3 +1,4 @@
+package algcode
 
 /*
 
@@ -14,16 +15,17 @@
 ]
 */
 var ret []string
+
 func generateParenthesis(n int) []string {
 
 	ret = make([]string, 0)
-	travelDFS(n,0,0,"")
+	travelDFS(n, 0, 0, "")
 	return ret
 }
 
-func travelDFS (n , left, right int , str string) {
+func travelDFS(n, left, right int, str string) {
 
-	if  n == right  && left == n   {
+	if n == right && left == n {
 		ret = append(ret, str)
 		return
 	}
@@ -36,11 +38,10 @@ func travelDFS (n , left, right int , str string) {
 		return
 	}
 
-	if right > n{
+	if right > n {
 		return
 	}
-	travelDFS(n, left+1, right, str + "(" )
-	travelDFS(n, left, right +1 , str + ")")
-
+	travelDFS(n, left+1, right, str+"(")
+	travelDFS(n, left, right+1, str+")")
 
 }
