@@ -44,3 +44,31 @@ func lengthOfLongestSubstring(s string) int {
 
 	return maxlen
 }
+
+/*2021060923*/
+func lengthOfLongestSubstring2(s string) int {
+	mp := make(map[byte]int)
+	if len(s) == 0 {
+		return 0
+	}
+	head := 0
+	res := 1
+	for i := 0; i < len(s); i++ {
+		cur := s[i]
+		if loc, ok := mp[cur]; ok {
+			if loc >= head {
+				head = loc + 1
+			}
+		}
+		mp[cur] = i
+		res = max(res, i-head+1)
+	}
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
